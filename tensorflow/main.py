@@ -1,5 +1,6 @@
 
 import tensorflow as tf
+import numpy as np
 import logging
 from tensorflow import keras
 import os
@@ -11,9 +12,7 @@ logging.basicConfig(filename=root / 'app.log', filemode='w',
 
 try:
     (train_images, train_labels), (test_images,
-                                   test_labels) = (np.random.random((10000, 28, 28)),  np.random.randint(10, size=(10000))), 
-                                   (np.random.random((1000, 28, 28)), np.random.randint(10, size=(1000))
-
+                                   test_labels) = (np.random.random((10000, 28, 28)),  np.random.randint(10, size=(10000))), (np.random.random((1000, 28, 28)), np.random.randint(10, size=(1000)))
 
     train_images = train_images / 255.0
     test_images = test_images / 255.0
@@ -28,8 +27,8 @@ try:
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
 
-    model.fit(train_images, train_labels, epochs=30, 
-    callbacks=[keras.callbacks.CSVLogger(root / 'logs.csv')])
+    model.fit(train_images, train_labels, epochs=30,
+              callbacks=[keras.callbacks.CSVLogger(root / 'logs.csv')])
 except Exception as e:
     logging.exception("Exception occurred")
 logging.info("Done")
