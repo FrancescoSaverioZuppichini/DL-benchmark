@@ -15,14 +15,14 @@ root = Path(__file__).parent.absolute()
 logging.basicConfig(filename= root / 'app.log', filemode='w',
                     format='%(name)s - %(levelname)s - %(message)s')
 
-train_ds = FashionMNIST(root='/tmp', train=True,
+train_ds = FashionMNIST(root='.', train=True,
                         download=True, transform=Compose([
                             Grayscale(),
                             Resize((112, 112)),
                             RandomHorizontalFlip(),
                             RandomVerticalFlip(),
                             ToTensor()]))
-test_ds = FashionMNIST(root='/tmp', train=False,
+test_ds = FashionMNIST(root='.', train=False,
                        download=True, transform=Compose([
                            Grayscale(),
                            Resize((112, 112)),
