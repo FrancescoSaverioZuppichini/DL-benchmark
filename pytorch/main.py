@@ -14,7 +14,7 @@ root = Path(__file__).parent.absolute()
 
 logging.basicConfig(filename=root / 'app.log', filemode='w',
                     format='%(name)s - %(levelname)s - %(message)s')
-
+logging.info(f'cuda={torch.cuda.is_available()}')
 train_ds = FakeData(transform=Compose([
     ToTensor()]))
 test_ds = FakeData(transform=Compose([
